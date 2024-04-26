@@ -42,6 +42,10 @@ class WordList:
 
             >>> wl.check_word("BIRD")
             False
+
+        Lowercase won't work
+            >>> wl.check_word("cat")
+            False
         """
 
         return word in self.words
