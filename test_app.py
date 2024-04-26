@@ -29,7 +29,9 @@ class BoggleAppTestCase(TestCase):
             html = response.get_data(as_text=True)
 
             self.assertEqual(response.status_code, 200)
-            self.assertIn("<td></td>", html) # TODO: Other possibility? "<title>Boggle</title>"
+            self.assertIn("<!-- HOMEPAGE Template for testing -->", html)
+            self.assertIn("<table", html)
+            self.assertIn("<title>Boggle</title>", html)
             self.assertEqual(session["high_score"], 500)
 
     def test_api_new_game(self):
