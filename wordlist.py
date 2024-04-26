@@ -13,7 +13,7 @@ class WordList:
             True
         """
 
-        self.words = self._read_dict(dict_path) # This is a set
+        self.words = self._read_dict(dict_path)  # This is a set
 
     def __repr__(self):
         return f"<WordList len={len(self.words)}>"
@@ -29,7 +29,20 @@ class WordList:
         return words
 
     def check_word(self, word):
-        """Is word in word list? Returns a boolean """
+        """Is word in word list?
+
+        Let's make a game and fill the board with a forced example of {'CAT', 'DOG'}:
+
+            >>> wl = WordList("test_dictionary.txt")
+
+        Checks if word is in word list
+
+            >>> wl.check_word("CAT")
+            True
+
+            >>> wl.check_word("BIRD")
+            False
+        """
 
         return word in self.words
 
