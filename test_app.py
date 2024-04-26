@@ -1,4 +1,5 @@
 from unittest import TestCase
+from flask import session
 
 from app import app, games
 
@@ -18,13 +19,18 @@ class BoggleAppTestCase(TestCase):
         """Make sure information is in the session and HTML is displayed"""
 
         with app.test_client() as client:
-            response = client.get('/')
-            breakpoint()
+
+            with client.session_transaction() as change_session:
+                change_session["high_score"] = 500
+
             # test that you're getting a template
+            response = client.get('/')
+
             html = response.get_data(as_text=True)
 
             self.assertEqual(response.status_code, 200)
-            self.assertIn("<title>Boggle</title>", html)
+            self.assertIn("<td></td>", html) # TODO: Other possibility? "<title>Boggle</title>"
+            self.assertEqual(session["high_score"], 500)
 
     def test_api_new_game(self):
         """Test starting a new game."""
