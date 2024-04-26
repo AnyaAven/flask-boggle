@@ -35,6 +35,10 @@ def new_game():
     # get a unique string id for the board we're creating
     game_id = str(uuid4())
     game = BoggleGame()
-    games[game_id] = game
+    games["gameId"] = game_id
+    games["board"] = game.board
 
-    return None   # FIXME
+    json_data = jsonify(games)
+    breakpoint()
+
+    return jsonify(games)
