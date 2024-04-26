@@ -13,7 +13,7 @@ class WordList:
             True
         """
 
-        self.words = self._read_dict(dict_path)
+        self.words = self._read_dict(dict_path) # This is a set
 
     def __repr__(self):
         return f"<WordList len={len(self.words)}>"
