@@ -11,7 +11,7 @@ app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 debug = DebugToolbarExtension(app)
 
-# The boggle games created, keyed by game id
+# The boggle games created, keyed by game_id
 games = {}
 
 
@@ -35,12 +35,17 @@ def new_game():
     # get a unique string id for the board we're creating
     game_id = str(uuid4())
     game = BoggleGame()
-    games["gameId"] = game_id
-    games["board"] = game.board
 
-    games  # holds Boggle instances like games {gameid: gameinstance}
+    # Set the new game into our games database
+    games["game_id"] = game
 
-    return jsonify(games)
+    # Data to be jsonified
+    game_id_and_board = {
+        "gameId": game_id,
+        "board": game.board
+    }
+
+    return jsonify(game_id_and_board)
 
 
 @app.post("api/score-word")
