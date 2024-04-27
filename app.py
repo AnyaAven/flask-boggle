@@ -48,7 +48,7 @@ def new_game():
     return jsonify(game_id_and_board)
 
 
-@app.post("api/score-word")
+@app.post("/api/score-word")
 def score_word():
     """ Check if word is legal,
     in the word list,
@@ -62,5 +62,11 @@ def score_word():
     """
 
     game_data = request.json  # { gameId: "example-game-id", word: "example"}
+
+    word = game_data["word"]
+    game_id = game_data["gameId"]
+    game = games[game_id]
+
+    if game.is_word_in_word_list(word)
 
     return jsonify()
