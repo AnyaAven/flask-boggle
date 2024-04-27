@@ -38,7 +38,10 @@ def new_game():
     games["gameId"] = game_id
     games["board"] = game.board
 
+    games  # holds Boggle instances like games {gameid: gameinstance}
+
     return jsonify(games)
+
 
 @app.post("api/score-word")
 def score_word():
@@ -53,10 +56,6 @@ def score_word():
     if a valid word return: {result: "ok"}
     """
 
-    request.json # { gameId: "example-game-id", word: "example"}
-
-
+    game_data = request.json  # { gameId: "example-game-id", word: "example"}
 
     return jsonify()
-
-
