@@ -54,6 +54,7 @@ def score_word():
     in the word list,
     and is findable on the board
 
+    Return JSON of:
     if not a word return: {result: "not-word"}
 
     if not on board return: {result: "not-on-board"}
@@ -62,7 +63,7 @@ def score_word():
     """
 
     game_data = request.json  # { gameId: "example-game-id", word: "example"}
-
+    breakpoint()
     word = game_data["word"]
     game_id = game_data["gameId"]
     game = games[game_id]
